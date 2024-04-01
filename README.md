@@ -41,3 +41,9 @@ fun main() {
     println("User name is -> $result")
 }
 ```
+# Install
+```kotlin
+dependencies {
+    implementation("io.paoloconte:kotlin-itsok:1.0")
+}
+```
