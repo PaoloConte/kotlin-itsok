@@ -15,18 +15,18 @@ See the example below to understand how it works.
 ```kotlin
 import io.paoloconte.itsok.*
 
-sealed interface MyError: ItsError<MyError> {
-    object NotFound : MyError
-    data class InvalidInput(val message: String) : MyError
+sealed interface RepositoryError: ItsError<RepositoryError> {
+    object NotFound : RepositoryError
+    data class InvalidInput(val message: String) : RepositoryError
 }
 
 data class User(val name: String, val age: Int): ItsOk<User>
 
-fun findUser(id: Int): Result<User, MyError> {
+fun findUser(id: Int): Result<User, RepositoryError> {
     return if (id == 1)
-        User("Mario", 30)   // no need to wrap in Ok
+        User("Mario", 30)           // no need to wrap in Ok
     else
-        MyError.NotFound    // no need to wrap in Error
+        RepositoryError.NotFound    // no need to wrap in Error
 }
 
 fun main() {
