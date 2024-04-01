@@ -8,7 +8,7 @@ With sealed classes you can define the set of both errors and ok values, but you
 ### This library
 This library aims to provide the best of both worlds, by providing a `Result` type that can be used with any type of error, 
 and a set of extension functions to make it easier to work with it.  
-Furthermore, it provides two additional interfaces, `ItsOk` and `ItsError` which allows you to avoid wrapping results into `Ok` and `Error` objects, for cleaner and more efficient code.   
+Furthermore, it provides two additional interfaces, `ItsOk` and `ItsError` which allow you to avoid wrapping results into `Ok` and `Error` objects, for cleaner and more efficient code.   
 See the example below to understand how it works.
 
 ## Example
