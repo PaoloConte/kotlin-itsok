@@ -132,3 +132,8 @@ inline fun <E> Result<Unit, E>.and(other: Result<Unit, E>): Result<Unit, E> {
     if (other is Error) return other
     return Ok
 }
+
+inline fun <T, E> Result<T, E>.or(other: Result<T, E>): Result<T, E> {
+    if (this is Ok) return this
+    return other
+}
