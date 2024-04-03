@@ -8,25 +8,25 @@ With sealed classes you can define the set of both errors and ok values, but you
 ### This library
 This library aims to provide the best of both worlds, by providing a `Result` type that can be used with any type of error, 
 and a set of extension functions to make it easier to work with it.  
-Furthermore, it provides two additional interfaces, `ItsOk` and `ItsError` which allows you to avoid wrapping results into `Ok` and `Error` objects, for cleaner and more efficient code.   
+Furthermore, it provides two additional interfaces, `ItsOk` and `ItsError` which allow you to avoid wrapping results into `Ok` and `Error` objects, for cleaner and more efficient code.   
 See the example below to understand how it works.
 
 ## Example
 ```kotlin
 import io.paoloconte.itsok.*
 
-sealed interface MyError: ItsError<MyError> {
-    object NotFound : MyError
-    data class InvalidInput(val message: String) : MyError
+sealed interface RepositoryError: ItsError<RepositoryError> {
+    object NotFound : RepositoryError
+    data class InvalidInput(val message: String) : RepositoryError
 }
 
 data class User(val name: String, val age: Int): ItsOk<User>
 
-fun findUser(id: Int): Result<User, MyError> {
+fun findUser(id: Int): Result<User, RepositoryError> {
     return if (id == 1)
-        User("Mario", 30)   // no need to wrap in Ok
+        User("Mario", 30)           // no need to wrap in Ok
     else
-        MyError.NotFound    // no need to wrap in Error
+        RepositoryError.NotFound    // no need to wrap in Error
 }
 
 fun main() {
