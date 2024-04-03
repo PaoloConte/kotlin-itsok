@@ -95,7 +95,7 @@ inline fun <T,E,F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T
         is Error -> onFailure(error)
     }
 
-fun <T> runCatching(block: () -> T): Result<T, Throwable> {
+fun <T> resultCatching(block: () -> T): Result<T, Throwable> {
     return try {
         Ok(block())
     } catch (t: Throwable) {
