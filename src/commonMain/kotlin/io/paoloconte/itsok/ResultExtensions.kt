@@ -7,7 +7,7 @@ import io.paoloconte.itsok.Result.Ok
 import kotlin.contracts.contract
 
 
-inline fun <reified T, reified E> Result<T, E>.isOk(): Boolean {
+inline fun <T, E> Result<T, E>.isOk(): Boolean {
     contract {
         returns(true) implies (this@isOk is Ok<T>)
         returns(false) implies (this@isOk is Error<E>)
@@ -15,7 +15,7 @@ inline fun <reified T, reified E> Result<T, E>.isOk(): Boolean {
     return this is Ok
 }
 
-inline fun <reified T, reified E> Result<T, E>.isError(): Boolean {
+inline fun <T, E> Result<T, E>.isError(): Boolean {
     contract {
         returns(true) implies (this@isError is Error<E>)
         returns(false) implies (this@isError is Ok<T>)
