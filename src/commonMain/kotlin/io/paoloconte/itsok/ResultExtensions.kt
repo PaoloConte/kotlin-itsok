@@ -87,6 +87,12 @@ inline fun <T, E, R> Result<T, E>.flatMap(transform: Result<T, E>.(T) -> Result<
         is Error -> this
     }
 
+inline fun <T, E, R> Result<T, E>.flatMapError(transform: Result<T, E>.(E) -> Result<T, R>): Result<T, R> =
+    when (this) {
+        is Ok -> this
+        is Error -> transform(error)
+    }
+
 inline fun <T, E, R> Result<T, E>.andThen(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E> = flatMap(transform)
 
 inline fun <T,E,F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T, F> =
