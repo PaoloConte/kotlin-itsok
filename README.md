@@ -45,6 +45,6 @@ fun main() {
 # Install
 ```kotlin
 dependencies {
-    implementation("io.paoloconte:kotlin-itsok:1.0")
+    implementation("io.paoloconte:kotlin-itsok:1.0.5")
 }
 ```
