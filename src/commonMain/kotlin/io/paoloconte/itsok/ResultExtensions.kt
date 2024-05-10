@@ -101,7 +101,7 @@ inline fun <T,E,F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T
         is Error -> onFailure(error)
     }
 
-fun <T> resultCatching(block: () -> T): Result<T, Throwable> {
+inline fun <T> resultCatching(block: () -> T): Result<T, Throwable> {
     return try {
         Ok(block())
     } catch (t: Throwable) {
@@ -112,7 +112,7 @@ fun <T> resultCatching(block: () -> T): Result<T, Throwable> {
     }
 }
 
-suspend fun <T> suspendCatching(block: suspend () -> T): Result<T, Throwable> {
+suspend inline fun <T> suspendCatching(block: suspend () -> T): Result<T, Throwable> {
     return try {
         Ok(block())
     } catch (t: Throwable) {
