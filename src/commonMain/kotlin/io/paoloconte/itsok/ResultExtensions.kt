@@ -23,59 +23,59 @@ inline fun <T, E> Result<T, E>.isError(): Boolean {
     return this is Error
 }
 
-inline fun <T,E> Result<T, E>.getOrNull(): T? =
+inline fun <T, E> Result<T, E>.getOrNull(): T? =
     when (this) {
         is Ok -> value
         else -> null
     }
 
-inline fun <T,E> Result<T, E>.getErrorOrNull(): E? =
+inline fun <T, E> Result<T, E>.getErrorOrNull(): E? =
     when (this) {
         is Error -> error
         else -> null
     }
 
-inline fun <T,E,R> Result<T, E>.map(transform: (T) -> R): Result<R, E> =
+inline fun <T, E, R> Result<T, E>.map(transform: (T) -> R): Result<R, E> =
     when (this) {
         is Ok -> Ok(transform(value))
         is Error -> this
     }
 
-inline fun <T,E,R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R> =
+inline fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R> =
     when (this) {
         is Ok -> this
         is Error -> Error(transform(error))
     }
 
-inline fun <T,E,R> Result<T, E>.recover(transform: (E) -> T): Result<T, R> =
+inline fun <T, E, R> Result<T, E>.recover(transform: (E) -> T): Result<T, R> =
     when (this) {
         is Ok -> this
         is Error -> Ok(transform(error))
     }
 
-inline fun  <T,E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> {
+inline fun <T, E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> {
     if (this is Ok) block(value)
     return this
 }
 
-inline fun  <T,E> Result<T, E>.onError(block: Error<E>.(E) -> Unit): Result<T, E> {
+inline fun <T, E> Result<T, E>.onError(block: Error<E>.(E) -> Unit): Result<T, E> {
     if (this is Error) block(error)
     return this
 }
 
-inline fun <T,E> Result<T, E>.getOrElse(onFailure: (E) -> T): T =
+inline fun <T, E> Result<T, E>.getOrElse(onFailure: (E) -> T): T =
     when (this) {
         is Ok -> value
         is Error -> onFailure(error)
     }
 
-inline fun <T,E> Result<T, E>.getOrDefault(defaultValue: T): T =
+inline fun <T, E> Result<T, E>.getOrDefault(defaultValue: T): T =
     when (this) {
         is Ok -> value
         is Error -> defaultValue
     }
 
-inline fun <T,E,R> Result<T, E>.fold(onSuccess: (T) -> R, onError: (E) -> R): R =
+inline fun <T, E, R> Result<T, E>.fold(onSuccess: (T) -> R, onError: (E) -> R): R =
     when (this) {
         is Ok -> onSuccess(value)
         is Error -> onError(error)
@@ -95,11 +95,7 @@ inline fun <T, E, R> Result<T, E>.flatMapError(transform: Result<T, E>.(E) -> Re
 
 inline fun <T, E, R> Result<T, E>.andThen(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E> = flatMap(transform)
 
-inline fun <T,E,F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T, F> =
-    when (this) {
-        is Ok -> this
-        is Error -> onFailure(error)
-    }
+inline fun <T, E, F> Result<T, E>.orElse(onFailure: Result<T, E>.(E) -> Result<T, F>): Result<T, F> = flatMapError(onFailure)
 
 inline fun <T> resultCatching(block: () -> T): Result<T, Throwable> {
     return try {
