@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "io.paoloconte"
-version = "1.0.6"
+version = "1.0.7"
 
 repositories {
     mavenCentral()
@@ -75,6 +75,9 @@ kotlin {
     iosSimulatorArm64()
     macosArm64()
     macosX64()
+    tvosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         nodejs()
