@@ -59,47 +59,47 @@ fun main() {
 ```
 # Methods
 ```kotlin
-inline fun <T, E> Result<T, E>.isOk(): Boolean 
+fun <T, E> Result<T, E>.isOk(): Boolean 
 
-inline fun <T, E> Result<T, E>.isError(): Boolean 
+fun <T, E> Result<T, E>.isError(): Boolean 
 
-inline fun <T, E> Result<T, E>.getOrNull(): T? 
+fun <T, E> Result<T, E>.getOrNull(): T? 
 
-inline fun <T, E> Result<T, E>.getErrorOrNull(): E?
+fun <T, E> Result<T, E>.getErrorOrNull(): E?
 
-inline fun <T, E, R> Result<T, E>.map(transform: (T) -> R): Result<R, E>
+fun <T, E, R> Result<T, E>.map(transform: (T) -> R): Result<R, E>
 
-inline fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R>
+fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R>
 
-inline fun <T, E, R> Result<T, E>.recover(transform: (E) -> T): Result<T, R>
+fun <T, E, R> Result<T, E>.recover(transform: (E) -> T): Result<T, R>
 
-inline fun <T, E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> 
+fun <T, E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> 
 
-inline fun <T, E> Result<T, E>.onError(block: Error<E>.(E) -> Unit): Result<T, E> 
+fun <T, E> Result<T, E>.onError(block: Error<E>.(E) -> Unit): Result<T, E> 
 
-inline fun <T, E> Result<T, E>.getOrElse(onFailure: (E) -> T): T
+fun <T, E> Result<T, E>.getOrElse(onFailure: (E) -> T): T
 
-inline fun <T, E> Result<T, E>.getOrDefault(defaultValue: T): T
+fun <T, E> Result<T, E>.getOrDefault(defaultValue: T): T
 
-inline fun <T, E, R> Result<T, E>.fold(onSuccess: (T) -> R, onError: (E) -> R): R
+fun <T, E, R> Result<T, E>.fold(onSuccess: (T) -> R, onError: (E) -> R): R
 
-inline fun <T, E, R> Result<T, E>.flatMap(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E>
+fun <T, E, R> Result<T, E>.flatMap(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E>
 
-inline fun <T, E, R> Result<T, E>.flatMapError(transform: Result<T, E>.(E) -> Result<T, R>): Result<T, R>
+fun <T, E, R> Result<T, E>.flatMapError(transform: Result<T, E>.(E) -> Result<T, R>): Result<T, R>
 
-inline fun <T, E, R> Result<T, E>.andThen(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E>  // same as flatMap
+fun <T, E, R> Result<T, E>.andThen(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E>  // same as flatMap
 
-inline fun <T, E, F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T, F>  // same as flatMapError
+fun <T, E, F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T, F>  // same as flatMapError
 
-inline fun <T> resultCatching(block: () -> T): Result<T, Throwable> 
+fun <T> resultCatching(block: () -> T): Result<T, Throwable> 
 
-suspend inline fun <T> suspendCatching(block: suspend () -> T): Result<T, Throwable>
+suspend fun <T> suspendCatching(block: suspend () -> T): Result<T, Throwable>
 
-inline fun <T, E> Result<T, E>.getOrThrow(): T
+fun <T, E> Result<T, E>.getOrThrow(): T
 
-inline fun <E> Result<Unit, E>.and(other: Result<Unit, E>): Result<Unit, E>
+fun <E> Result<Unit, E>.and(other: Result<Unit, E>): Result<Unit, E>
 
-inline fun <T, E> Result<T, E>.or(other: Result<T, E>): Result<T, E>
+fun <T, E> Result<T, E>.or(other: Result<T, E>): Result<T, E>
 ```
 
 # Install
