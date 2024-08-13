@@ -71,7 +71,7 @@ fun <T, E, R> Result<T, E>.map(transform: (T) -> R): Result<R, E>
 
 fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R>
 
-fun <T, E, R> Result<T, E>.recover(transform: (E) -> T): Result<T, R>
+fun <T, E> Result<T, E>.recover(transform: (E) -> T): Result<T, E>
 
 fun <T, E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> 
 
@@ -105,7 +105,7 @@ fun <T, E> Result<T, E>.or(other: Result<T, E>): Result<T, E>
 # Install
 ```kotlin
 dependencies {
-    implementation("io.paoloconte:kotlin-itsok:1.0.7")
+    implementation("io.paoloconte:kotlin-itsok:1.0.8")
 }
 ```
 

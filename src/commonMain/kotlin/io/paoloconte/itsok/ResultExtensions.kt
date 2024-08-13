@@ -47,7 +47,7 @@ inline fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R> =
         is Error -> Error(transform(error))
     }
 
-inline fun <T, E, R> Result<T, E>.recover(transform: (E) -> T): Result<T, R> =
+inline fun <T, E> Result<T, E>.recover(transform: (E) -> T): Result<T, E> =
     when (this) {
         is Ok -> this
         is Error -> Ok(transform(error))
