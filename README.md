@@ -105,7 +105,7 @@ fun <T, E> Result<T, E>.or(other: Result<T, E>): Result<T, E>
 # Install
 ```kotlin
 dependencies {
-    implementation("io.paoloconte:kotlin-itsok:1.0.8")
+    implementation("io.paoloconte:kotlin-itsok:1.0.9")
 }
 ```
 

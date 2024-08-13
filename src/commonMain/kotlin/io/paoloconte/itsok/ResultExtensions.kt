@@ -5,7 +5,16 @@ package io.paoloconte.itsok
 import io.paoloconte.itsok.Result.Error
 import io.paoloconte.itsok.Result.Ok
 import kotlin.contracts.contract
+import kotlin.jvm.JvmName
 
+@JvmName("isItsOk")
+inline fun <reified T: ItsOk<T>, E> Result<T, E>.isOk(): Boolean {
+    contract {
+        returns(true) implies (this@isOk is T)
+        returns(false) implies (this@isOk is Error<E>)
+    }
+    return this is Ok
+}
 
 inline fun <T, E> Result<T, E>.isOk(): Boolean {
     contract {
@@ -13,6 +22,15 @@ inline fun <T, E> Result<T, E>.isOk(): Boolean {
         returns(false) implies (this@isOk is Error<E>)
     }
     return this is Ok
+}
+
+@JvmName("isItsError")
+inline fun <T, reified E: ItsError<E>> Result<T, E>.isError(): Boolean {
+    contract {
+        returns(true) implies (this@isError is E)
+        returns(false) implies (this@isError is Ok<T>)
+    }
+    return this is Error
 }
 
 inline fun <T, E> Result<T, E>.isError(): Boolean {
