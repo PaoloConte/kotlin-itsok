@@ -5,5 +5,5 @@ package io.paoloconte.itsok
  */
 @Suppress("UNCHECKED_CAST")
 interface ItsOk<T: Result.Ok<T>> : Result.Ok<T> {
-    override val value: T get() = this as T
+    override val wrappedValue: T get() = this as T
 }

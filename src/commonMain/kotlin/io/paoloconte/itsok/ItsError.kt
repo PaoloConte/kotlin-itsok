@@ -5,5 +5,5 @@ package io.paoloconte.itsok
  */
 @Suppress("UNCHECKED_CAST")
 interface ItsError<E: Result.Error<E>> : Result.Error<E> {
-    override val error: E get() = this as E
+    override val wrappedError: E get() = this as E
 }

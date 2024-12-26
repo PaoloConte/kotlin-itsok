@@ -4,8 +4,8 @@ import io.paoloconte.itsok.Result.Error
 import io.paoloconte.itsok.Result.Ok
 
 
-class BaseOk<out T>(override val value: T): Ok<T>
-class BaseError<out E>(override val error: E): Error<E>
+class BaseOk<out T>(override val wrappedValue: T): Ok<T>
+class BaseError<out E>(override val wrappedError: E): Error<E>
 
 /**
  * Creates an instance of [Ok] with the given [value] unless value is already of type [ItsOk].
