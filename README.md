@@ -67,6 +67,8 @@ fun <T, E> Result<T, E>.getOrNull(): T?
 
 fun <T, E> Result<T, E>.getErrorOrNull(): E?
 
+fun <T, E> Result<T, E>.getErrorOrThrow(): E
+
 fun <T, E, R> Result<T, E>.map(transform: (T) -> R): Result<R, E>
 
 fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R>
