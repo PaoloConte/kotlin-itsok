@@ -18,7 +18,7 @@ This is a little library that provides an improved way to use `Result` in Kotlin
 ### Why
 There are two cool ways, in Kotlin standard library, to handle errors: `kotlin.Result` and sealed classes; though both present some limitations.  
 The standard `Result` uses exceptions as error type, which means you can't specify the type of possible error values.   
-With sealed classes you can define the set of both errors and ok values, but you lose the general flexibility and expressiveness of `Result`.
+With sealed classes you can define the set of both errors and ok values, but you lose the general flexibility and expressiveness of `Result` by using functions such as `map`, `mapError`, `fold`, etc.
 ### This library
 This library aims to provide the best of both worlds, by providing a `Result` type that can be used with any type of error, 
 and a set of extension functions to make it easier to work with it.  
