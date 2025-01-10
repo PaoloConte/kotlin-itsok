@@ -24,6 +24,15 @@ inline fun <T, E> Result<T, E>.isOk(): Boolean {
     return this is Ok
 }
 
+@JvmName("isItsOkwithItsError")
+inline fun <reified T: ItsOk<T>, reified E: ItsError<E>> Result<T, E>.isOk(): Boolean {
+    contract {
+        returns(true) implies (this@isOk is T)
+        returns(false) implies (this@isOk is E)
+    }
+    return this is T
+}
+
 @JvmName("isItsError")
 inline fun <T, reified E: ItsError<E>> Result<T, E>.isError(): Boolean {
     contract {
@@ -32,6 +41,17 @@ inline fun <T, reified E: ItsError<E>> Result<T, E>.isError(): Boolean {
     }
     return this is E
 }
+
+
+@JvmName("isItsErrorwithItsOk")
+inline fun <reified T: ItsOk<T>, reified E: ItsError<E>> Result<T, E>.isError(): Boolean {
+    contract {
+        returns(true) implies (this@isError is E)
+        returns(false) implies (this@isError is T)
+    }
+    return this is E
+}
+
 
 inline fun <T, E> Result<T, E>.isError(): Boolean {
     contract {
