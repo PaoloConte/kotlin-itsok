@@ -13,7 +13,7 @@ inline fun <reified T: ItsOk<T>, E> Result<T, E>.isOk(): Boolean {
         returns(true) implies (this@isOk is T)
         returns(false) implies (this@isOk is Error<E>)
     }
-    return this is Ok
+    return this is T
 }
 
 inline fun <T, E> Result<T, E>.isOk(): Boolean {
@@ -30,7 +30,7 @@ inline fun <T, reified E: ItsError<E>> Result<T, E>.isError(): Boolean {
         returns(true) implies (this@isError is E)
         returns(false) implies (this@isError is Ok<T>)
     }
-    return this is Error
+    return this is E
 }
 
 inline fun <T, E> Result<T, E>.isError(): Boolean {
