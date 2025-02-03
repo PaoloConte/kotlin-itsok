@@ -97,12 +97,12 @@ inline fun <T, E> Result<T, E>.recover(transform: (E) -> T): Result<T, E> =
         is Error -> Ok(transform(wrappedError))
     }
 
-inline fun <T, E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> {
+inline fun <T, E> Result<T, E>.onSuccess(block: Result<T, E>.(T) -> Unit): Result<T, E> {
     if (this is Ok) block(wrappedValue)
     return this
 }
 
-inline fun <T, E> Result<T, E>.onError(block: Error<E>.(E) -> Unit): Result<T, E> {
+inline fun <T, E> Result<T, E>.onError(block: Result<T, E>.(E) -> Unit): Result<T, E> {
     if (this is Error) block(wrappedError)
     return this
 }
