@@ -1,5 +1,6 @@
-
 rootProject.name = "kotlin-itsok"
+
+include("lib")
 
 pluginManagement {
 
