@@ -1,6 +1,7 @@
 rootProject.name = "kotlin-itsok"
 
 include("lib")
+include("lib-kotest")
 
 pluginManagement {
 

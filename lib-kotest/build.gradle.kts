@@ -1,3 +1,4 @@
+
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.SonatypeHost
@@ -17,11 +18,11 @@ mavenPublishing {
         sourcesJar = true,
     ))
 
-    coordinates(project.group.toString(), "kotlin-itsok", project.version.toString())
+    coordinates(project.group.toString(), "kotlin-itsok-kotest", project.version.toString())
 
     pom {
-        name.set("Kotlin ItsOk library")
-        description.set("A little library that provides an improved way to use Result in Kotlin")
+        name.set("Kotlin ItsOk kotest extensions")
+        description.set("Kotest utility extensions for the main ItsOk library")
         inceptionYear.set("2024")
         url.set("https://github.com/PaoloConte/kotlin-itsok")
         licenses {
@@ -66,14 +67,11 @@ kotlin {
     mingwX64()
     iosX64()
     iosArm64()
+    iosSimulatorArm64()
     watchosArm64()
     watchosSimulatorArm64()
-    iosSimulatorArm64()
     macosArm64()
     macosX64()
-    tvosSimulatorArm64()
-    tvosX64()
-    tvosArm64()
     @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs {
         nodejs()
@@ -87,6 +85,8 @@ kotlin {
 
         named("commonMain") {
             dependencies {
+                implementation("io.paoloconte:kotlin-itsok:${project.version}")
+                implementation("io.kotest:kotest-assertions-core:6.0.4")
             }
         }
 

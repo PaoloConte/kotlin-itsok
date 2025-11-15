@@ -107,8 +107,26 @@ fun <T, E> Result<T, E>.or(other: Result<T, E>): Result<T, E>
 # Install
 ```kotlin
 dependencies {
-    implementation("io.paoloconte:kotlin-itsok:1.1.4")
+    implementation("io.paoloconte:kotlin-itsok:1.1.5")
 }
+```
+
+# Kotest extensions
+```kotlin
+dependencies {
+    implementation("io.paoloconte:kotlin-itsok-kotest:1.1.5")
+}
+```
+
+### Methods
+```kotlin
+inline fun <reified T : ItsOk<T>, reified E> Result<T, E>.shouldBeOk(): T 
+
+inline fun <reified T, reified E> Result<T, E>.shouldBeOk(): Result.Ok<T> 
+
+inline fun <reified T, reified E: ItsError<E>> Result<T, E>.shouldBeError(): E
+
+inline fun <reified T, reified E> Result<T, E>.shouldBeError(): Result.Error<E> 
 ```
 
 [badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg?style=flat
