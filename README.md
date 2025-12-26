@@ -75,9 +75,9 @@ fun <T, E, R> Result<T, E>.mapError(transform: (E) -> R): Result<T, R>
 
 fun <T, E> Result<T, E>.recover(transform: (E) -> T): Result<T, E>
 
-fun <T, E> Result<T, E>.onSuccess(block: Ok<T>.(T) -> Unit): Result<T, E> 
+fun <T, E> Result<T, E>.onSuccess(block: Result<T, E>.(T) -> Unit): Result<T, E>
 
-fun <T, E> Result<T, E>.onError(block: Error<E>.(E) -> Unit): Result<T, E> 
+fun <T, E> Result<T, E>.onError(block: Result<T, E>.(E) -> Unit): Result<T, E> 
 
 fun <T, E> Result<T, E>.getOrElse(onFailure: (E) -> T): T
 
@@ -91,7 +91,7 @@ fun <T, E, R> Result<T, E>.flatMapError(transform: Result<T, E>.(E) -> Result<T,
 
 fun <T, E, R> Result<T, E>.andThen(transform: Result<T, E>.(T) -> Result<R, E>): Result<R, E>  // same as flatMap
 
-fun <T, E, F> Result<T, E>.orElse(onFailure: (E) -> Result<T, F>): Result<T, F>  // same as flatMapError
+fun <T, E, F> Result<T, E>.orElse(onFailure: Result<T, E>.(E) -> Result<T, F>): Result<T, F>  // same as flatMapError
 
 fun <T> resultCatching(block: () -> T): Result<T, Throwable> 
 
